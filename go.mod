@@ -1,4 +1,4 @@
-module code/benjamin/async_task
+module github.com/Benjaminlii/async_task
 
 go 1.19
 
