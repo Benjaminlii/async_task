@@ -7,8 +7,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"code/benjamin/async_task/biz/common"
-	"code/benjamin/async_task/biz/driver/redis"
+	"github.com/Benjaminlii/async_task/biz/common"
+	"github.com/Benjaminlii/async_task/biz/driver/redis"
 )
 
 type SyncerServiceDefaultImpl struct{}

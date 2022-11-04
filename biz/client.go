@@ -5,10 +5,10 @@ import (
 
 	"github.com/pkg/errors"
 
-	"code/benjamin/async_task/biz/common"
-	"code/benjamin/async_task/biz/config"
-	"code/benjamin/async_task/biz/service/creator"
-	"code/benjamin/async_task/biz/service/syncer"
+	"github.com/Benjaminlii/async_task/biz/common"
+	"github.com/Benjaminlii/async_task/biz/config"
+	"github.com/Benjaminlii/async_task/biz/service/creator"
+	"github.com/Benjaminlii/async_task/biz/service/syncer"
 )
 
 type TaskCenterClient struct {

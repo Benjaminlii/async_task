@@ -3,9 +3,9 @@ package runner
 import (
 	"sync"
 
-	"code/benjamin/async_task/biz/config"
-	"code/benjamin/async_task/biz/driver/redis"
-	"code/benjamin/async_task/biz/driver/rocketmq"
+	"github.com/Benjaminlii/async_task/biz/config"
+	"github.com/Benjaminlii/async_task/biz/driver/redis"
+	"github.com/Benjaminlii/async_task/biz/driver/rocketmq"
 )
 
 var (

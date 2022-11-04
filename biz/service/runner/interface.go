@@ -1,7 +1,7 @@
 package runner
 
 import (
-	"code/benjamin/async_task/biz/common"
+	"github.com/Benjaminlii/async_task/biz/common"
 )
 
 type RunnerService interface {

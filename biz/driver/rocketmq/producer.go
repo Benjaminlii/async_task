@@ -11,8 +11,8 @@ import (
 	"github.com/apache/rocketmq-client-go/v2/producer"
 	"github.com/pkg/errors"
 
-	"code/benjamin/async_task/biz/config"
-	"code/benjamin/async_task/biz/driver/logger"
+	"github.com/Benjaminlii/async_task/biz/config"
+	"github.com/Benjaminlii/async_task/biz/driver/logger"
 )
 
 const (

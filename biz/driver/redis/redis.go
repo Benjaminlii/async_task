@@ -1,10 +1,11 @@
 package redis
 
 import (
-	"code/benjamin/async_task/biz/common"
-	"code/benjamin/async_task/biz/config"
 	"fmt"
 	"sync"
+
+	"github.com/Benjaminlii/async_task/biz/common"
+	"github.com/Benjaminlii/async_task/biz/config"
 
 	"github.com/go-redis/redis"
 	"github.com/pkg/errors"

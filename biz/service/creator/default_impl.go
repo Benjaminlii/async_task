@@ -6,12 +6,12 @@ import (
 
 	"github.com/google/uuid"
 
-	"code/benjamin/async_task/biz/common"
-	"code/benjamin/async_task/biz/config"
-	"code/benjamin/async_task/biz/driver/logger"
-	"code/benjamin/async_task/biz/driver/rocketmq"
-	"code/benjamin/async_task/biz/service/syncer"
-	"code/benjamin/async_task/biz/utils"
+	"github.com/Benjaminlii/async_task/biz/common"
+	"github.com/Benjaminlii/async_task/biz/config"
+	"github.com/Benjaminlii/async_task/biz/driver/logger"
+	"github.com/Benjaminlii/async_task/biz/driver/rocketmq"
+	"github.com/Benjaminlii/async_task/biz/service/syncer"
+	"github.com/Benjaminlii/async_task/biz/utils"
 )
 
 type CreatorServiceDefaultImpl struct{}

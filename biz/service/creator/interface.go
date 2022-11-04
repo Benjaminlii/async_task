@@ -3,7 +3,7 @@ package creator
 import (
 	"context"
 
-	"code/benjamin/async_task/biz/common"
+	"github.com/Benjaminlii/async_task/biz/common"
 )
 
 type CreatorService interface {

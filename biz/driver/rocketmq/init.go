@@ -1,8 +1,9 @@
 package rocketmq
 
 import (
-	"code/benjamin/async_task/biz/config"
 	"sync"
+
+	"github.com/Benjaminlii/async_task/biz/config"
 
 	"github.com/pkg/errors"
 )

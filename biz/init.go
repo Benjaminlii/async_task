@@ -3,10 +3,10 @@ package async_task
 import (
 	"sync"
 
-	"code/benjamin/async_task/biz/config"
-	"code/benjamin/async_task/biz/service/creator"
-	"code/benjamin/async_task/biz/service/runner"
-	"code/benjamin/async_task/biz/service/syncer"
+	"github.com/Benjaminlii/async_task/biz/config"
+	"github.com/Benjaminlii/async_task/biz/service/creator"
+	"github.com/Benjaminlii/async_task/biz/service/runner"
+	"github.com/Benjaminlii/async_task/biz/service/syncer"
 )
 
 type InitFun func(options *config.Options) error

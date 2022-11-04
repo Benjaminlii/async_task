@@ -1,8 +1,8 @@
 package syncer
 
 import (
-	"code/benjamin/async_task/biz/config"
-	"code/benjamin/async_task/biz/driver/redis"
+	"github.com/Benjaminlii/async_task/biz/config"
+	"github.com/Benjaminlii/async_task/biz/driver/redis"
 )
 
 func Init(config *config.Options) (err error) {

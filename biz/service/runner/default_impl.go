@@ -7,10 +7,10 @@ import (
 	"github.com/apache/rocketmq-client-go/v2/primitive"
 	"github.com/pkg/errors"
 
-	"code/benjamin/async_task/biz/common"
-	"code/benjamin/async_task/biz/driver/logger"
-	"code/benjamin/async_task/biz/driver/rocketmq"
-	"code/benjamin/async_task/biz/service/syncer"
+	"github.com/Benjaminlii/async_task/biz/common"
+	"github.com/Benjaminlii/async_task/biz/driver/logger"
+	"github.com/Benjaminlii/async_task/biz/driver/rocketmq"
+	"github.com/Benjaminlii/async_task/biz/service/syncer"
 )
 
 type RunnerServiceDefaultImpl struct{}

@@ -1,6 +1,6 @@
 package config
 
-import "code/benjamin/async_task/biz/common"
+import "github.com/Benjaminlii/async_task/biz/common"
 
 var config Options
 
