@@ -13,3 +13,11 @@
 
 # Dependency directories (remove the comment below to include it)
 # vendor/
+
+go.sum
+log/*
+/.idea
+/.vscode
+/output
+/conf/config.local.yml
+/conf/kitex_remote_config.json

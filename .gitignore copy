@@ -1,0 +1,11 @@
+*.exe
+*.rar
+*.zip
+*.gz
+go.sum
+log/*
+/.idea
+/.vscode
+/output
+/conf/config.local.yml
+/conf/kitex_remote_config.json
