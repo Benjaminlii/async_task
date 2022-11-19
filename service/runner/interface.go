@@ -5,5 +5,5 @@ import (
 )
 
 type RunnerService interface {
-	RegisterHandler(handlerMapping map[common.TaskType]*common.AsyncTaskHandler) error
+	RegisterHandler(handlerMapping map[common.TaskType]common.AsyncTaskHandler) error
 }

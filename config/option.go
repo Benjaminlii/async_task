@@ -7,7 +7,7 @@ var config Options
 type Options struct {
 	RocketMQConfig *RocketMQConfig
 	RedisConfig    *RedisConfig
-	HandlerMapping map[common.TaskType]*common.AsyncTaskHandler
+	HandlerMapping map[common.TaskType]common.AsyncTaskHandler
 }
 
 func SetConfig(o Options) {
@@ -42,10 +42,10 @@ func WithRedis(redisConfig *RedisConfig) OptionFunc {
 	}}
 }
 
-func WithHandler(taskType common.TaskType, handler *common.AsyncTaskHandler) OptionFunc {
+func WithHandler(taskType common.TaskType, handler common.AsyncTaskHandler) OptionFunc {
 	return OptionFunc{func(op *Options) {
 		if len(op.HandlerMapping) == 0 {
-			op.HandlerMapping = make(map[common.TaskType]*common.AsyncTaskHandler, 4)
+			op.HandlerMapping = make(map[common.TaskType]common.AsyncTaskHandler, 4)
 		}
 		op.HandlerMapping[taskType] = handler
 	}}

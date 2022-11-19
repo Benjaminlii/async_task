@@ -15,7 +15,7 @@ import (
 
 type RunnerServiceDefaultImpl struct{}
 
-func (impl *RunnerServiceDefaultImpl) RegisterHandler(handlerMapping map[common.TaskType]*common.AsyncTaskHandler) error {
+func (impl *RunnerServiceDefaultImpl) RegisterHandler(handlerMapping map[common.TaskType]common.AsyncTaskHandler) error {
 	var err error
 	registerHandlerOnce.Do(func() {
 		if len(handlerMapping) == 0 {
@@ -30,7 +30,7 @@ func (impl *RunnerServiceDefaultImpl) RegisterHandler(handlerMapping map[common.
 				for i := range msgs {
 					taskID := msgs[i].Body
 					logger.Infof(ctx, "[consumer running] taskID:%s", string(taskID))
-					if err := impl.runTask(ctx, taskType, string(taskID), *handler); err != nil {
+					if err := impl.runTask(ctx, taskType, string(taskID), handler); err != nil {
 						return consumer.ConsumeRetryLater, errors.Wrap(err, "[consumer running] runTask error")
 					}
 				}
