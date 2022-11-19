@@ -16,7 +16,7 @@ type TaskCenterClient struct {
 }
 
 func (c *TaskCenterClient) Create(ctx context.Context, taskType common.TaskType, bizRequest *interface{}, option *common.TaskAdditionalOption) (string, error) {
-	if !CheckInit() {
+	if !checkInit() {
 		return "", errors.New("[Create] client need init")
 	}
 	taskID, err := creator.NewCreatorService().CreateTask(ctx, taskType, bizRequest, option)
@@ -27,7 +27,7 @@ func (c *TaskCenterClient) Create(ctx context.Context, taskType common.TaskType,
 }
 
 func (c *TaskCenterClient) AppendProgress(ctx context.Context, taskType common.TaskType, taskID string, appendProgress float64) error {
-	if !CheckInit() {
+	if !checkInit() {
 		return errors.New("[AppendProgress] client need init")
 	}
 	if err := syncer.NewSyncerService().AppendProgress(ctx, taskType, taskID, appendProgress); err != nil {
@@ -37,7 +37,7 @@ func (c *TaskCenterClient) AppendProgress(ctx context.Context, taskType common.T
 }
 
 func (c *TaskCenterClient) GetResult(ctx context.Context, taskType common.TaskType, taskID string, bizResponse interface{}) (*common.TaskStateInfo, error) {
-	if !CheckInit() {
+	if !checkInit() {
 		return nil, errors.New("[GetResult] client need init")
 	}
 

@@ -40,6 +40,6 @@ func Init(optionFuncs ...config.OptionFunc) (*TaskCenterClient, error) {
 	return client, err
 }
 
-func CheckInit() bool {
+func checkInit() bool {
 	return hasInit
 }
