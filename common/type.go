@@ -9,6 +9,10 @@ import (
 // 任务类型，可扩展 为支持自定义taskID 保证taskID不重复 tasktype不应为纯数字
 type TaskType string
 
+func (o *TaskType) MarshalBinary() (data []byte, err error) {
+	return []byte(*o), nil
+}
+
 // 异步任务附加参数
 type TaskAdditionalOption struct {
 	TaskStateInfoTimeout time.Duration // 任务状态信息的超时时间，默认12小时
