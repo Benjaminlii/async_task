@@ -9,8 +9,8 @@ import (
 // 任务类型，可扩展 为支持自定义taskID 保证taskID不重复 tasktype不应为纯数字
 type TaskType string
 
-func (o *TaskType) MarshalBinary() (data []byte, err error) {
-	return []byte(*o), nil
+func (o TaskType) MarshalBinary() (data []byte, err error) {
+	return []byte(o), nil
 }
 
 // 异步任务附加参数
@@ -20,7 +20,7 @@ type TaskAdditionalOption struct {
 	CustomTaskID         *string       // 自定义TaskID, 若启用调用方需自己保证自己id在type内t唯一
 }
 
-func (o *TaskAdditionalOption) MarshalBinary() (data []byte, err error) {
+func (o TaskAdditionalOption) MarshalBinary() (data []byte, err error) {
 	return json.Marshal(o)
 }
 
@@ -39,7 +39,7 @@ type TaskStateInfo struct {
 	ResultInfo map[string]string // 业务自定义结果信息
 }
 
-func (o *TaskStateInfo) MarshalBinary() (data []byte, err error) {
+func (o TaskStateInfo) MarshalBinary() (data []byte, err error) {
 	return json.Marshal(o)
 }
 

@@ -21,7 +21,7 @@ func (impl *SyncerServiceDefaultImpl) InitTaskInfo(ctx context.Context, taskType
 	}
 	err := impl.SetTaskAdditionalOption(ctx, taskType, taskID, option)
 	if err != nil {
-		return errors.Wrap(err, "[InitTaskStateInfo] GetTaskAdditionalOption error")
+		return errors.Wrap(err, "[InitTaskStateInfo] SetTaskAdditionalOption error")
 	}
 
 	redisKey := redis.GetTaskID2TaskStateKey(taskType, taskID)
