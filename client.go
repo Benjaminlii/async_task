@@ -31,7 +31,7 @@ func (c *TaskCenterClient) AppendProgress(ctx context.Context, taskType common.T
 		return errors.New("[AppendProgress] client need init")
 	}
 	if err := syncer.NewSyncerService().AppendProgress(ctx, taskType, taskID, appendProgress); err != nil {
-		return errors.New("[AppendProgress] AppendProgress error")
+		return errors.Wrap(err, "[AppendProgress] AppendProgress error")
 	}
 	return nil
 }
@@ -54,7 +54,7 @@ func (c *TaskCenterClient) GetResult(ctx context.Context, taskType common.TaskTy
 
 	// 否则查询业务结果
 	if err := syncer.NewSyncerService().GetBizResponse(ctx, taskType, taskID, &bizResponse); err != nil {
-		return nil, errors.New("[GetResult] GetBizResponse error")
+		return nil, errors.Wrap(err, "[GetResult] GetBizResponse error")
 	}
 	return info, nil
 }

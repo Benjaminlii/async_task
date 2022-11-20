@@ -30,11 +30,11 @@ func (cs *CreatorServiceDefaultImpl) CreateTask(ctx context.Context, taskType co
 	}
 	// 初始化task Info
 	if err := syncer.NewSyncerService().InitTaskInfo(ctx, taskType, *taskID, option); err != nil {
-		return "", errors.New("[CreateTask] InitTaskInfo error")
+		return "", errors.Wrap(err, "[CreateTask] InitTaskInfo error")
 	}
 	// 存储req信息
 	if err := syncer.NewSyncerService().SetBizRequest(ctx, taskType, *taskID, *bizRequest); err != nil {
-		return "", errors.New("[CreateTask] SetBizRequest error")
+		return "", errors.Wrap(err, "[CreateTask] SetBizRequest error")
 	}
 	// 发送mq消息
 	msgID, err := rocketmq.SendMessage(ctx, *taskID, []string{string(taskType)})
