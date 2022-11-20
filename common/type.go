@@ -28,6 +28,17 @@ func NewTaskAdditionalOption() *TaskAdditionalOption {
 	}
 }
 
+// 任务执行状态信息
+type TaskStateInfo struct {
+	State      TaskState         // 处理状态
+	Progress   float64           // 处理进度：0~1的float数字（1表示100%）
+	ResultInfo map[string]string // 业务自定义结果信息
+}
+
+func (o *TaskStateInfo) MarshalBinary() (data []byte, err error) {
+	return json.Marshal(o)
+}
+
 // 异步任务状态
 type TaskState int64
 
@@ -66,11 +77,4 @@ func CalculateTaskState(beforeState TaskState, afterState TaskState) (TaskState,
 		}
 	}
 	return beforeState, errors.New("[CalculateTaskState] calculate failed")
-}
-
-// 任务执行状态信息
-type TaskStateInfo struct {
-	State      TaskState         // 处理状态
-	Progress   float64           // 处理进度：0~1的float数字（1表示100%）
-	ResultInfo map[string]string // 业务自定义结果信息
 }
