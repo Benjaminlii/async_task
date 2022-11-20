@@ -21,7 +21,7 @@ func (c *TaskCenterClient) Create(ctx context.Context, taskType common.TaskType,
 	}
 	taskID, err := creator.NewCreatorService().CreateTask(ctx, taskType, bizRequest, option)
 	if err != nil {
-		return "", errors.New("[Create] CreateTask error")
+		return "", errors.Wrap(err, "[Create] CreateTask error")
 	}
 	return taskID, nil
 }
@@ -44,7 +44,7 @@ func (c *TaskCenterClient) GetResult(ctx context.Context, taskType common.TaskTy
 	// 获取任务执行状态
 	info, err := syncer.NewSyncerService().GetTaskStateInfo(ctx, taskType, taskID)
 	if err != nil {
-		return nil, errors.New("[GetResult] GetTaskStateInf error")
+		return nil, errors.Wrap(err, "[GetResult] GetTaskStateInf error")
 	}
 
 	// 若未进行完，直接返回

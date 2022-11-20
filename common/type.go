@@ -1,6 +1,7 @@
 package common
 
 import (
+	"encoding/json"
 	"errors"
 	"time"
 )
@@ -13,6 +14,10 @@ type TaskAdditionalOption struct {
 	TaskStateInfoTimeout time.Duration // 任务状态信息的超时时间，默认12小时
 	TaskResultTimeout    time.Duration // 任务执行结果信息的超时时间，默认12小时
 	CustomTaskID         *string       // 自定义TaskID, 若启用调用方需自己保证自己id在type内t唯一
+}
+
+func (o *TaskAdditionalOption) MarshalBinary() (data []byte, err error) {
+	return json.Marshal(o)
 }
 
 func NewTaskAdditionalOption() *TaskAdditionalOption {

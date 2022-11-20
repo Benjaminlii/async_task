@@ -126,7 +126,11 @@ func (impl *SyncerServiceDefaultImpl) SetBizRequest(ctx context.Context, taskTyp
 	}
 
 	redisKey := redis.GetTaskID2TaskRequestKey(taskType, taskID)
-	_, err = redis.Redis().Set(redisKey, bizRequest, option.TaskStateInfoTimeout).Result()
+	reqBytes, err := json.Marshal(bizRequest)
+	if err != nil {
+		return errors.Wrap(err, "[SetBizRequest] Marshal error")
+	}
+	_, err = redis.Redis().Set(redisKey, reqBytes, option.TaskStateInfoTimeout).Result()
 	if err != nil {
 		return errors.Wrap(err, "[SetBizRequest] redis set error")
 	}
@@ -149,7 +153,13 @@ func (impl *SyncerServiceDefaultImpl) SetBizResponse(ctx context.Context, taskTy
 	}
 
 	redisKey := redis.GetTaskID2TaskRespKey(taskType, taskID)
-	_, err = redis.Redis().Set(redisKey, bizResponse, option.TaskResultTimeout).Result()
+
+	respBytes, err := json.Marshal(bizResponse)
+	if err != nil {
+		return errors.Wrap(err, "[SetBizResponse] Marshal error")
+	}
+
+	_, err = redis.Redis().Set(redisKey, respBytes, option.TaskResultTimeout).Result()
 	if err != nil {
 		return errors.Wrap(err, "[SetBizResponse] redis set error")
 	}
