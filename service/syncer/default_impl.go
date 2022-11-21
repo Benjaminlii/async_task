@@ -138,7 +138,7 @@ func (impl *SyncerServiceDefaultImpl) SetBizRequest(ctx context.Context, taskTyp
 }
 
 func (impl *SyncerServiceDefaultImpl) GetBizRequest(ctx context.Context, taskType common.TaskType, taskID string) (string, error) {
-	redisKey := redis.GetTaskID2TaskRespKey(taskType, taskID)
+	redisKey := redis.GetTaskID2TaskRequestKey(taskType, taskID)
 	dataStr, err := redis.Redis().Get(redisKey).Result()
 	if err != nil {
 		return "", errors.Wrap(err, "[GetBizRequest] redis get error")
