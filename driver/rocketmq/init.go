@@ -1,6 +1,7 @@
 package rocketmq
 
 import (
+	"context"
 	"sync"
 
 	"github.com/Benjaminlii/async_task/config"
@@ -34,6 +35,10 @@ func InitRocketMQ(config *config.Options) error {
 		}
 		if err = InitProducer(mqConfig); err != nil {
 			err = errors.Wrap(err, "[InitRocketMQ] InitProducer error")
+			return
+		}
+		if _, err = SendMessage(context.Background(), "hello", nil); err != nil {
+			err = errors.Wrap(err, "[InitRocketMQ] SendMessage error")
 			return
 		}
 	})
