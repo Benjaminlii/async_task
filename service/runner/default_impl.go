@@ -36,7 +36,8 @@ func (impl *RunnerServiceDefaultImpl) RegisterHandler(handlerMapping map[common.
 				}
 				return consumer.ConsumeSuccess, nil
 			}
-			rocketmq.RunConsumer(tags, f, consumerShutdownCond)
+			rocketmq.RunConsumer(tags, f, shutdownChan)
+			consumerCount++
 		}
 	})
 

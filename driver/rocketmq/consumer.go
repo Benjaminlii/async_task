@@ -3,7 +3,6 @@ package rocketmq
 import (
 	"context"
 	"strings"
-	"sync"
 
 	"github.com/apache/rocketmq-client-go/v2"
 	"github.com/apache/rocketmq-client-go/v2/consumer"
@@ -11,7 +10,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func RunConsumer(tags []string, bizFunc func(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error), consumerShutdownCond *sync.Cond) {
+func RunConsumer(tags []string, bizFunc func(ctx context.Context, msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error), shutdownChan <-chan struct{}) {
 	go func() {
 		PushConsumer, err := rocketmq.NewPushConsumer(consumer.WithNameServer(ASyncTaskNameServers))
 		if err != nil {
@@ -33,7 +32,7 @@ func RunConsumer(tags []string, bizFunc func(ctx context.Context, msgs ...*primi
 		if err = PushConsumer.Start(); err != nil {
 			panic(errors.Wrap(err, "[registerConsumer] consumer start error"))
 		}
-		consumerShutdownCond.Wait()
+		<-shutdownChan
 		if err = PushConsumer.Shutdown(); err != nil {
 			panic(errors.Wrap(err, "[registerConsumer] Subscribe error"))
 		}

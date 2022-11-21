@@ -10,12 +10,13 @@ import (
 )
 
 var (
-	registerHandlerOnce  sync.Once
-	consumerShutdownCond *sync.Cond
+	registerHandlerOnce sync.Once
+	consumerCount       int
+	shutdownChan        chan struct{}
 )
 
 func Init(config *config.Options) error {
-	consumerShutdownCond = sync.NewCond(&sync.Mutex{})
+	shutdownChan = make(chan struct{})
 	if err := rocketmq.InitRocketMQ(config); err != nil {
 		return errors.Wrap(err, "[Init] InitRocketMQ error")
 	}
@@ -28,8 +29,10 @@ func Init(config *config.Options) error {
 	return nil
 }
 
-func Shutdown(){
-	consumerShutdownCond.Broadcast()
+func Shutdown() {
+	for i := 0; i < consumerCount; i++ {
+		shutdownChan <- struct{}{}
+	}
 }
 
 func NewRunnerService() RunnerService {
